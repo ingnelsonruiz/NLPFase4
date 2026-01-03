@@ -2,9 +2,9 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.chains import RetrievalQA
+# CAMBIO AQUÍ: Importación específica para evitar el ModuleNotFoundError
+from langchain.chains.retrieval_qa.base import RetrievalQA
 import os
-
 
 def build_rag_chain():
     # Modelo
