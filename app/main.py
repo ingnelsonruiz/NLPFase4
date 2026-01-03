@@ -12,6 +12,7 @@ from langchain_community.vectorstores import Chroma
 # IMPORTACIÓN CORRECTA:
 from langchain.chains.retrieval_qa.base import RetrievalQA
 
+
 # =========================
 # 1. VALIDAR API KEY
 # =========================
