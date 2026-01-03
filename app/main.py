@@ -2,9 +2,12 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import os
 
+# =========================
+# IMPORTS LANGCHAIN MODERNOS
+# =========================
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.document_loaders import TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 
@@ -32,8 +35,10 @@ class QuestionRequest(BaseModel):
 # =========================
 # 4. CARGA DE DOCUMENTOS
 # =========================
+DATA_PATH = "data/Conocimiento.txt"
+
 loader = TextLoader(
-    file_path="data/Conocimiento.txt",
+    file_path=DATA_PATH,
     encoding="utf-8"
 )
 documents = loader.load()
@@ -58,7 +63,9 @@ vectorstore = Chroma.from_documents(
     persist_directory="./chroma_db"
 )
 
-retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+retriever = vectorstore.as_retriever(
+    search_kwargs={"k": 3}
+)
 
 # =========================
 # 7. MODELO LLM
@@ -74,7 +81,8 @@ llm = ChatOpenAI(
 qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
     retriever=retriever,
-    chain_type="stuff"
+    chain_type="stuff",
+    return_source_documents=False
 )
 
 # =========================
@@ -82,12 +90,12 @@ qa_chain = RetrievalQA.from_chain_type(
 # =========================
 @app.get("/")
 def health_check():
-    return {"status": "API RAG activa"}
+    return {"status": "API RAG activa 🚀"}
 
 @app.post("/chat")
 def chat(request: QuestionRequest):
-    result = qa_chain.invoke({"query": request.question})
+    response = qa_chain.invoke({"query": request.question})
     return {
         "question": request.question,
-        "answer": result["result"]
+        "answer": response["result"]
     }
