@@ -9,8 +9,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain.chains import RetrievalQA
-
+from langchain.chains.retrieval_qa.base import RetrievalQA
 # =========================
 # 1. VALIDAR API KEY
 # =========================
