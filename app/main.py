@@ -9,16 +9,16 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-# IMPORTACIÓN CORRECTA:
-# from langchain.chains.retrieval_qa.base import RetrievalQA
+# Importación corregida para versiones modernas de LangChain
 from langchain.chains import RetrievalQA
-
 
 # =========================
 # 1. VALIDAR API KEY
 # =========================
-if not os.getenv("OPENAI_API_KEY"):
-    raise EnvironmentError("❌ OPENAI_API_KEY no está configurada")
+# Es mejor obtenerla aquí para pasarla explícitamente a los componentes
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise EnvironmentError("❌ ERROR: La variable OPENAI_API_KEY no está configurada en Render")
 
 # =========================
 # 2. APP FASTAPI
@@ -38,7 +38,12 @@ class QuestionRequest(BaseModel):
 # =========================
 # 4. CARGA DE DOCUMENTOS
 # =========================
-DATA_PATH = "data/Conocimiento.txt"
+# Usamos una ruta absoluta basada en la ubicación de este archivo para evitar errores
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(os.path.dirname(BASE_DIR), "data", "Conocimiento.txt")
+
+if not os.path.exists(DATA_PATH):
+    raise FileNotFoundError(f"❌ No se encontró el archivo en: {DATA_PATH}")
 
 loader = TextLoader(
     file_path=DATA_PATH,
@@ -58,7 +63,8 @@ docs = text_splitter.split_documents(documents)
 # =========================
 # 6. EMBEDDINGS Y VECTOR DB
 # =========================
-embeddings = OpenAIEmbeddings()
+# Pasamos la API Key explícitamente para evitar fallos de contexto
+embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 
 vectorstore = Chroma.from_documents(
     documents=docs,
@@ -75,7 +81,8 @@ retriever = vectorstore.as_retriever(
 # =========================
 llm = ChatOpenAI(
     model="gpt-3.5-turbo",
-    temperature=0
+    temperature=0,
+    openai_api_key=api_key
 )
 
 # =========================
@@ -93,12 +100,16 @@ qa_chain = RetrievalQA.from_chain_type(
 # =========================
 @app.get("/")
 def health_check():
-    return {"status": "API RAG activa 🚀"}
+    return {"status": "API RAG activa 🚀", "python_version": "3.12.7"}
 
 @app.post("/chat")
 def chat(request: QuestionRequest):
-    response = qa_chain.invoke({"query": request.question})
-    return {
-        "question": request.question,
-        "answer": response["result"]
-    }
+    try:
+        # Usamos invoke que es el estándar actual
+        response = qa_chain.invoke({"query": request.question})
+        return {
+            "question": request.question,
+            "answer": response["result"]
+        }
+    except Exception as e:
+        return {"error": str(e)}
