@@ -1,20 +1,26 @@
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-# CAMBIO AQUÍ: Importación específica para evitar el ModuleNotFoundError
-from langchain.chains.retrieval_qa.base import RetrievalQA
+# CAMBIO 1: Importar desde el paquete de splitters especializado
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+# CAMBIO 2: Importación directa y limpia de RetrievalQA
+from langchain.chains import RetrievalQA
 import os
 
 def build_rag_chain():
+    # Validar API KEY
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise ValueError("❌ OPENAI_API_KEY no encontrada en las variables de entorno")
+
     # Modelo
     llm = ChatOpenAI(
         model="gpt-4o-mini",
         temperature=0.2,
-        openai_api_key=os.environ.get("OPENAI_API_KEY")
+        openai_api_key=api_key
     )
 
-    # Cargar documento
+    # Cargar documento (Asegúrate que la carpeta data existe)
     loader = TextLoader(
         file_path="data/Conocimiento.txt",
         encoding="utf-8"
@@ -29,15 +35,13 @@ def build_rag_chain():
     chunks = splitter.split_documents(documents)
 
     # Embeddings
-    embeddings = OpenAIEmbeddings(
-        openai_api_key=os.environ.get("OPENAI_API_KEY")
-    )
+    embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 
     # Vector DB
     vectordb = Chroma.from_documents(
         documents=chunks,
         embedding=embeddings,
-        persist_directory="chroma_db"
+        persist_directory="./chroma_db"
     )
 
     # QA Chain
