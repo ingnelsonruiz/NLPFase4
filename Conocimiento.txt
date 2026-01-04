@@ -1,15 +1,64 @@
-Información General del Curso y Actividad: Este proyecto corresponde a la Fase 4 del curso de Procesamiento de Lenguaje Natural (Código: 203238430) de la Universidad Nacional Abierta y a Distancia (UNAD). Esta fase se enfoca en Aplicaciones Avanzadas de NLP y Modelos de Lenguaje. La actividad es de tipo independiente y tiene un peso evaluativo de 110 puntos. El periodo de desarrollo comprende desde el 3 de diciembre de 2025 hasta el 18 de enero de 2026.
+nformación General del Curso y la Actividad
 
-Objetivos Tecnológicos de la Fase 4: El resultado de aprendizaje esperado es estructurar soluciones eficientes mediante la toma de decisiones para generar valor agregado en el análisis de datos. El ejercicio principal consiste en desarrollar individualmente un chatbot basado en Large Language Models (LLMs) utilizando la herramienta LangChain.
+Nombre del Curso: Natural Language Processing.
 
-Arquitectura del Chatbot:
-LangChain: Es el marco de trabajo principal utilizado para permitir el desarrollo de aplicaciones conversacionales con LLMs.
 
-LLMs: Son modelos de lenguaje entrenados con grandes volúmenes de texto para procesar preguntas y respuestas. En este proyecto se utiliza el modelo gpt-3.5-turbo.
+Código del Curso: 203238430.
 
-ChromaDB: Funciona como una base de datos vectorial local que permite almacenar y recuperar "embeddings" para proporcionar una base de conocimiento externa al modelo.
 
-Memoria Conversacional: El sistema implementa ConversationBufferMemory para que el chatbot pueda recordar el hilo de la conversación y el contexto previo.
+Fase Actual: Fase 4 - Fundamentals of Natural Language Processing.
 
-Componente de Certificación Externa: Como requisito de la fase, los estudiantes deben completar la certificación "Getting Started with Large Language Models" ofrecida por IBM a través de la plataforma Cognitive Class. Esta certificación cubre temas como Prompt Engineering (El arte de la ingeniería de prompts) y la creación de sitios web tipo ChatGPT con LLMs de código abierto.
+
+Tipo de Actividad: Independiente.
+
+
+Puntaje Máximo: 110 puntos.
+
+
+Fecha de Inicio: Miércoles, 3 de diciembre de 2025.
+
+
+Fecha de Cierre: Domingo, 18 de enero de 2026.
+
+
+Resultado de Aprendizaje: Estructurar diferentes soluciones tomando decisiones eficientes para la generación de valor agregado en contextos de datos analizados.
+
+🛠️ Requerimientos Técnicos y Herramientas
+
+Herramienta Principal: LangChain para el desarrollo de chatbots basados en Modelos de Lenguaje Grande (LLMs).
+
+
+Librerías Necesarias: langchain, openai, chromadb, tiktoken, streamlit y python-dotenv.
+
+
+Modelo de Lenguaje sugerido: GPT-3.5-turbo con una temperatura de 0.7 para el control de la creatividad en las respuestas.
++1
+
+
+Interfaz de Usuario: Se requiere el uso de Streamlit para desplegar el chatbot en una interfaz amigable.
++1
+
+📝 Descripción de los Ejercicios
+
+Ejercicio 1 - Construcción de un Chatbot Conversacional: Consiste en implementar un chatbot en un Python Notebook (.ipynb) que incluya la instalación de librerías, llamadas básicas a un LLM, implementación de memoria conversacional y recuperación de información (RAG) .
+
+
+Ejercicio 2 - Construcción de tu propio Chatbot: El estudiante debe desarrollar un chatbot con memoria conversacional, recuperación de información de una base de conocimiento externa, despliegue en Streamlit y la evaluación y ajuste de parámetros con métricas de desempeño .
+
+
+Ejercicio 3 - Certificación IBM: Es requisito completar la certificación "Getting Started with Large Language Models" en la plataforma Cognitive Class de IBM. Los módulos incluyen Prompt Engineering y la creación de sitios tipo ChatGPT con LLMs de código abierto.
++1
+
+📜 Instrucciones para la Entrega de Evidencias
+
+Producto a entregar: Documentos con extensión .ipynb que contengan el desarrollo de los ejercicios.
+
+
+Certificación IBM: Se debe cargar el certificado en el foro colaborativo.
+
+
+Nomenclatura del archivo de certificación: G##_NombreEstudiante_ML_Certification.pdf (donde G## es el número de grupo).
+
+
+Originalidad: Los productos deben cumplir con las normas APA y pasar por la herramienta Turnitin para evitar el plagio académico . El plagio o fraude académico resultará en una calificación de cero puntos
 
