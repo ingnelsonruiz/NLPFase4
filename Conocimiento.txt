@@ -1,4 +1,4 @@
-nformación General del Curso y la Actividad
+información General del Curso y la Actividad
 
 Nombre del Curso: Natural Language Processing.
 
@@ -61,4 +61,5 @@ Nomenclatura del archivo de certificación: G##_NombreEstudiante_ML_Certificatio
 
 
 Originalidad: Los productos deben cumplir con las normas APA y pasar por la herramienta Turnitin para evitar el plagio académico . El plagio o fraude académico resultará en una calificación de cero puntos
+
 
