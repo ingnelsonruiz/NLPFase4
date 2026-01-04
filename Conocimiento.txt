@@ -1,65 +1,71 @@
-información General del Curso y la Actividad
+FICHA TÉCNICA Y ACADÉMICA: FASE 4 NLP - UNAD
+1. Información General del Proyecto
 
-Nombre del Curso: Natural Language Processing.
+Institución: Universidad Nacional Abierta y a Distancia (UNAD) - ECBTI.
++1
+
+
+Curso: Natural Language Processing.
 
 
 Código del Curso: 203238430.
 
 
-Fase Actual: Fase 4 - Fundamentals of Natural Language Processing.
-
-
-Tipo de Actividad: Independiente.
+Fase Actual: Fase 4 - Advanced NLP Applications and Language Models.
 
 
 Puntaje Máximo: 110 puntos.
 
 
-Fecha de Inicio: Miércoles, 3 de diciembre de 2025.
+Cronograma: Inicia el 3 de diciembre de 2025 y finaliza el 18 de enero de 2026.
+
+Estudiante: Nelson Javier Ruiz Lozano.
+
+Tutor: Andrés Felipe Hernández Giraldo.
+
+2. Arquitectura del Sistema (Backend en Render)
+Servidor Backend: El motor de procesamiento de lenguaje natural está alojado en Render.
+
+URL del Backend: https://nlpfase4.onrender.com
+
+Framework: FastAPI versión 0.109.0 para la creación de la API REST.
+
+Entorno de Ejecución: Python 3.12.7 gestionado mediante runtime.txt.
+
+Endpoints Principales: * GET /: Health check que verifica el estado de la API y la carga de la base de conocimiento local.
+
+POST /chat: Procesa las consultas de los usuarios utilizando la lógica RAG.
+
+3. Implementación de Inteligencia Artificial (RAG)
+Orquestador: LangChain versión 0.1.0 para la gestión de cadenas de recuperación y memoria.
+
+Modelo de Lenguaje: GPT-3.5-Turbo de OpenAI con una temperatura de 0.7 para equilibrar la precisión y la fluidez.
+
+Base de Datos Vectorial: ChromaDB (v0.4.22) para el almacenamiento persistente de embeddings.
+
+Procesamiento de Documentos:
+
+Carga: Utiliza TextLoader para leer el archivo Conocimiento.txt.
+
+Fragmentación (Chunking): El texto se divide en fragmentos de 500 caracteres con un solapamiento (overlap) de 50 caracteres para no perder el contexto semántico entre bloques.
+
+Recuperación: Se utiliza una cadena RetrievalQA que extrae los 3 fragmentos más relevantes para generar cada respuesta.
+
+4. Detalles de los Ejercicios de la Guía
+
+Ejercicio 1 (Chatbot Básico): Implementación de un chatbot en LangChain que procesa preguntas y respuestas utilizando memoria conversacional (ConversationBufferMemory) .
 
 
-Fecha de Cierre: Domingo, 18 de enero de 2026.
+Ejercicio 2 (Chatbot Avanzado): Desarrollo de un sistema RAG que recupera información de una base de conocimiento externa y se despliega en Streamlit .
 
 
-Resultado de Aprendizaje: Estructurar diferentes soluciones tomando decisiones eficientes para la generación de valor agregado en contextos de datos analizados.
+Ejercicio 3 (Certificación IBM): Requisito de completar el curso "Getting Started with Large Language Models" de IBM, cubriendo temas como Prompt Engineering y creación de sitios tipo ChatGPT .
 
-🛠️ Requerimientos Técnicos y Herramientas
+5. Normativa de Entrega
 
-Herramienta Principal: LangChain para el desarrollo de chatbots basados en Modelos de Lenguaje Grande (LLMs).
-
-
-Librerías Necesarias: langchain, openai, chromadb, tiktoken, streamlit y python-dotenv.
+Formato de Entrega: Los desarrollos deben presentarse en archivos con extensión .ipynb (Jupyter Notebooks).
 
 
-Modelo de Lenguaje sugerido: GPT-3.5-turbo con una temperatura de 0.7 para el control de la creatividad en las respuestas.
-+1
+Certificación IBM: Debe entregarse en el foro colaborativo con la nomenclatura G##_NombreEstudiante_ML_Certification.pdf .
 
-
-Interfaz de Usuario: Se requiere el uso de Streamlit para desplegar el chatbot en una interfaz amigable.
-+1
-
-📝 Descripción de los Ejercicios
-
-Ejercicio 1 - Construcción de un Chatbot Conversacional: Consiste en implementar un chatbot en un Python Notebook (.ipynb) que incluya la instalación de librerías, llamadas básicas a un LLM, implementación de memoria conversacional y recuperación de información (RAG) .
-
-
-Ejercicio 2 - Construcción de tu propio Chatbot: El estudiante debe desarrollar un chatbot con memoria conversacional, recuperación de información de una base de conocimiento externa, despliegue en Streamlit y la evaluación y ajuste de parámetros con métricas de desempeño .
-
-
-Ejercicio 3 - Certificación IBM: Es requisito completar la certificación "Getting Started with Large Language Models" en la plataforma Cognitive Class de IBM. Los módulos incluyen Prompt Engineering y la creación de sitios tipo ChatGPT con LLMs de código abierto.
-+1
-
-📜 Instrucciones para la Entrega de Evidencias
-
-Producto a entregar: Documentos con extensión .ipynb que contengan el desarrollo de los ejercicios.
-
-
-Certificación IBM: Se debe cargar el certificado en el foro colaborativo.
-
-
-Nomenclatura del archivo de certificación: G##_NombreEstudiante_ML_Certification.pdf (donde G## es el número de grupo).
-
-
-Originalidad: Los productos deben cumplir con las normas APA y pasar por la herramienta Turnitin para evitar el plagio académico . El plagio o fraude académico resultará en una calificación de cero puntos
-
-
+Honestidad Académica: Todo trabajo debe cumplir con las normas APA y las políticas de la UNAD contra el plagio. El plagio comprobado resulta en una calificación de cero puntos
